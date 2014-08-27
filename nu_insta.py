@@ -170,7 +170,6 @@ def add_photo():
     if 'user_id' not in session:
         abort(401)
 
-    error = None
     f = request.files['file']
     if f and allowed_file(f.filename):
         # Ensure the filename is secure
@@ -181,8 +180,6 @@ def add_photo():
         f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     	create_photo(g.user, filename, request.form['text'])
         flash('Posted!')
-    else:
-        error = "darn"
 
     return redirect(url_for('timeline'))
 
