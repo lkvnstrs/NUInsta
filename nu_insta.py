@@ -54,8 +54,12 @@ def user_timeline(username):
     followed = False
     if g.user:
         followed = db.session.query(followers).filter_by(who_id=session['user_id'], whom_id=profile_user.id).first() is not None
+    
+    num_followers = len(db.session.query(followers).filter_by(whom_id=profile_user.id).all())
+    num_followings = len(db.session.query(followers).filter_by(who_id=profile_user.id).all())
+    
     return render_template('timeline.html', photos=profile_user.photos.order_by(Photo.pub_date.desc()).limit(PER_PAGE), 
-    	followed=followed, profile_user=profile_user)
+    	followed=followed, profile_user=profile_user, followers=num_followers, followings=num_followings)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

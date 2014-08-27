@@ -17,6 +17,18 @@
 		<h1>{{ self.title() }}</h1>
 		{% if request.endpoint == 'user_timeline' %}
 			<p class="center"><img  src="{{ profile_user.email|gravatar(size=250) }}"></p>
+			
+			<!-- Followers-->
+			<div class="col-md-6 center box">
+				Followers: {{ followers }}
+			</div>
+
+			<!-- Following -->
+			<div class="col-md-offset-6 center box">
+				Following: {{ followings }}
+			</div>
+
+			<!-- Follow/Unfollow buttons -->
 			{% if g.user.id != profile_user.id %}
 
 				{% if followed %}
