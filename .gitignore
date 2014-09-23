@@ -1,4 +1,8 @@
-*.db
-*.jpg
-.DS_Store
 *.pyc
+bin/*
+include/*
+lib/*
+.DS_Store
+.Python
+nu_insta.db
+uploads/*
